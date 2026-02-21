@@ -1,3 +1,68 @@
+server:
+  port: 8090
+application:
+  title: 'User Management System'
+  version: '1.0.0'
 spring:
+  threads:
+    virtual:
+      enabled: true
+  banner:
+    location: classpath:banner.txt
   application:
     name: user-auth-management
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimum-idle: 5        # Minimum number of idle connections to keep in the pool
+      maximum-pool-size: 10  # Maximum number of connections allowed in the pool
+      idle-timeout: 30000    # Max time (ms) that an idle connection can stay in the pool before being removed
+      pool-name: HikariPool-1 # Name of the connection pool (for logging/monitoring)
+
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      #ddl-auto = create-drop , update
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        generate_statistics: true
+        #value for using mySql = org.hibernate.dialect.MySQLDialect
+        #value for using postgres  = org.hibernate.dialect.PostgreSQLDialect
+        dialect: ${DATABASE_TYPE}
+        format_sql: false
+        show_sql: true
+        connection:
+          url: ${spring.datasource.url}
+          username: ${spring.datasource.username}
+          password: ${spring.datasource.password}
+          autocommit: false
+          isolation: TRANSACTION_REPEATABLE_READ
+          pool_size: ${spring.datasource.hikari.maximum-pool-size}
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+    web: debug
+
+system:
+  admin-properties:
+    email: ${ADMIN_EMAIL}
+    password: ${ADMIN_PASSWORD}
+    first-name: ${ADMIN_FIRSTNAME}
+    last-name: ${ADMIN_LASTNAME}
+
+rsa-key:
+  public-key: classpath:rsa/publicKey.pem
+  private-key: classpath:rsa/privateKey.pem
+
+mail-config-properties:
+  mail-host: ${MAIL_SENDER}
+  mail-secret: ${MAIL_PASSWORD}
+

@@ -1,0 +1,11 @@
+  _____ ____ ____    ______   ______ _____ _____ __  __
+ |_   _/ ___/ ___|  / ___\ \ / / ___|_   _| ____|  \/  |
+   | || |   \___ \  \___ \\ V /\___ \ | | |  _| | |\/| |
+   | || |___ ___) |  ___) || |  ___) || | | |___| |  | |
+   |_| \____|____/  |____/ |_| |____/ |_| |_____|_|  |_|
+
+${application.title} ${application.version}
+Powered by Spring Boot ${spring-boot.version} 🇰🇭
+
+This project is designed and optimized to run on **JDK 21**.
+Current runtime Java version: ${java.version}
