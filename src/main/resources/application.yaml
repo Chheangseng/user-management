@@ -1,37 +1,3 @@
 spring:
   application:
-    name: user-management
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
-    hikari:
-      minimum-idle: 5        # Minimum number of idle connections to keep in the pool
-      maximum-pool-size: 10  # Maximum number of connections allowed in the pool
-      idle-timeout: 30000    # Max time (ms) that an idle connection can stay in the pool before being removed
-      pool-name: HikariPool-1 # Name of the connection pool (for logging/monitoring)
-
-
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.project.model
-  configuration:
-    map-underscore-to-camel-case: true
-    # Ensures null values are handled correctly by Postgres types
-    jdbc-type-for-null: 'NULL'
-
-logging:
-  level:
-    org:
-      springframework:
-        security: debug
-    web: debug
-
-rsa-key:
-  public-key: classpath:rsa/publicKey.pem
-  private-key: classpath:rsa/privateKey.pem
-
-mail-config-properties:
-  mail-host: ${MAIL_SENDER}
-  mail-secret: ${MAIL_PASSWORD}
+    name: user-auth-management
